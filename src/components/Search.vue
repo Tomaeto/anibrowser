@@ -1,17 +1,17 @@
 <template>
 
-<input v-model="searchInput" placeholder="Input search term"></input>
-<input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
+    <input v-model="searchInput" placeholder="Input search term"></input>
+    <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
 
-<p v-if="!searchResults">Loading...</p>
-<h1 v-else>Search Results</h1>
-<ul>
-<ResultCard :results="searchResults"/>
-</ul>
+    <p v-if="!searchResults">Loading...</p>
+    <h1 v-else>Search Results</h1>
+    <ul>
+        <ResultCard :results="searchResults" />
+    </ul>
 </template>
 
 <script setup>
-import {ref, watch} from 'vue'
+import { ref, watch } from 'vue'
 import ResultCard from "./ResultCard.vue"
 const searchQuery = `
 query($search: String, $perPage: Int) {
@@ -60,7 +60,7 @@ const searchInput = ref('');
 const searchResults = ref([]);
 async function getSearch() {
     searchResults.value = null;
-  variables.search = searchInput.value;
+    variables.search = searchInput.value;
     options.body = JSON.stringify({
         query: searchQuery,
         variables: variables
@@ -73,8 +73,6 @@ function handleResponse(response) {
         return response.ok ? json : Promise.reject(json);
     });
 }
-
-
 
 function handleData(data) {
     searchResults.value = JSON.parse(JSON.stringify(data.data.Page.media))
