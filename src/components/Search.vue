@@ -4,10 +4,9 @@
     <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
 
     <p v-if="!searchResults">Loading...</p>
-    <h1 v-else-if="searchComplete" :style="{display:'flex', justifyContent:'center'}">Search Results</h1>
-    <ul>
-        <ResultCard :results="searchResults" />
-    </ul>
+    <h1 v-else-if="searchComplete" :style="{ display: 'flex', justifyContent: 'center' }">Search Results: {{
+        searchResults.length }}</h1>
+    <ResultCard :results="searchResults" />
 </template>
 
 <script setup>

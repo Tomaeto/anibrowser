@@ -9,3 +9,4 @@ import Trending from "@/components/Trending.vue"
         <Trending />
     </div>
 </template>
+
