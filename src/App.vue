@@ -4,6 +4,8 @@ import Trending from "@/components/Trending.vue"
 </script>
 
 <template>
-<Search />
-<Trending />
+    <div>
+        <Search />
+        <Trending />
+    </div>
 </template>

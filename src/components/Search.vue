@@ -4,7 +4,7 @@
     <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
 
     <p v-if="!searchResults">Loading...</p>
-    <h1 v-else>Search Results</h1>
+    <h1 v-else-if="searchComplete" :style="{display:'flex', justifyContent:'center'}">Search Results</h1>
     <ul>
         <ResultCard :results="searchResults" />
     </ul>
@@ -57,6 +57,7 @@ var url = 'https://graphql.anilist.co',
     };
 
 const searchInput = ref('');
+const searchComplete = ref(false);
 const searchResults = ref([]);
 async function getSearch() {
     searchResults.value = null;
@@ -76,5 +77,6 @@ function handleResponse(response) {
 
 function handleData(data) {
     searchResults.value = JSON.parse(JSON.stringify(data.data.Page.media))
+    searchComplete.value = true;
 }
 </script>
