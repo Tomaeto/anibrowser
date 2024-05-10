@@ -4,7 +4,7 @@
     <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
 
     <p v-if="!searchResults">Loading...</p>
-    <h1 v-else-if="searchComplete" :style="{ display: 'flex', justifyContent: 'center' }">Search Results: {{
+    <h1 v-else-if="searchComplete" :style="{ display: 'flex', justifyContent: 'center' }">Total Results: {{
         searchResults.length }}</h1>
     <ResultCard :results="searchResults" />
 </template>
@@ -33,6 +33,18 @@ query($search: String, $perPage: Int) {
                 large
                 extraLarge
             }
+            description
+            startDate {
+        year
+        month
+        day
+      }
+      endDate {
+        year
+        month
+        day
+      }
+      averageScore
         }
     }
 }

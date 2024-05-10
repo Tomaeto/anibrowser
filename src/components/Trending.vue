@@ -1,15 +1,13 @@
 <template>
     <h1 :style="{ marginLeft: '20px' }">Trending Anime</h1>
     <p v-if="!trendingAnime">Loading Anime...</p>
-    <div :style="{ display: 'flex', 'flex-wrap': 'wrap', justifyContent: 'normal' }">
+    <div class="resBox">
         <div v-for="(t, i) in trendingAnime" :key="i">
-            <a class="result" :href="t.siteUrl" target="__blank" >
+            <a class="result" :href="t.siteUrl" target="__blank">
 
-                <img :src="t.coverImage.extraLarge"
-                    :style="{ borderRadius: '10px', width: 'inherit', height: '22em', objectFit: 'cover', aspectRatio: 'auto' }"></img>
+                <img :src="t.coverImage.extraLarge"></img>
 
-                <p
-                    :style="{ whiteSpace: 'nowrap', 'max-width': '15em', overflow: 'hidden', 'textOverflow': 'ellipsis', alignSelf: 'center' }">
+                <p class="title">
                     {{ t.title.english === null ? t.title.romaji : t.title.english }}</p>
 
             </a>
@@ -19,14 +17,12 @@
     </div>
     <h1 :style="{ marginLeft: '20px' }">Trending Manga</h1>
     <p v-if="!trendingManga">Loading Manga...</p>
-    <div :style="{ display: 'inline-flex', 'flex-wrap': 'wrap', justifyContent: 'normal' }">
+    <div class="resBox">
         <div v-for="(t, i) in trendingManga" :key="i">
-            <a class="result" :href="t.siteUrl" target="__blank"  title="Test">
+            <a class="result" :href="t.siteUrl" target="__blank" title="Test">
 
-                <img :src="t.coverImage.extraLarge"
-                    :style="{ borderRadius: '10px', width: 'inherit', height: '22em', objectFit: 'cover' }"></img>
-                <p
-                    :style="{ whiteSpace: 'nowrap', 'max-width': '15em', overflow: 'hidden', 'textOverflow': 'ellipsis', alignSelf: 'center' }">
+                <img :src="t.coverImage.extraLarge"></img>
+                <p class="title">
                     {{ t.title.english === null ? t.title.romaji : t.title.english }}</p>
             </a>
         </div>
@@ -116,21 +112,47 @@ onMounted(() => {
     getTrendingData()
 })
 
+const resBoxStyle = ref({
+
+})
+
 </script>
 
-<style>
+<style scoped>
 .result {
-    display: inline-flex; 
-    flex-flow: column; 
-    width: 14em; 
-    margin-inline: 2.5em; 
+    display: inline-flex;
+    flex-flow: column;
+    width: 14em;
+    margin-inline: 2.5em;
     justify-content: center;
-    color: inherit; 
+    color: inherit;
     text-decoration: inherit;
 }
+
 .result:hover {
-    transform:scale(1.1);
+    transform: scale(1.1);
     transition: ease-in-out;
     transition-duration: 500ms;
+}
+
+.title {
+    white-space: nowrap; 
+    max-width: 15em; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    align-self: center; 
+}
+
+.resBox {
+    display: inline-flex; 
+    flex-wrap: wrap; 
+    justify-content: normal;
+}
+img {
+    border-radius: 10px; 
+    width: inherit; 
+    height: 22em;
+    object-fit: cover; 
+    aspect-ratio: auto; 
 }
 </style>
