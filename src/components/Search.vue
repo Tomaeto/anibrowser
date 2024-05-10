@@ -1,6 +1,6 @@
 <template>
 
-    <input v-model="searchInput" placeholder="Input search term"></input>
+    <input v-model="searchInput" placeholder="Input search term" @keyup.enter="getSearch" :disabled="!searchResults"></input>
     <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
 
     <p v-if="!searchResults">Loading...</p>
