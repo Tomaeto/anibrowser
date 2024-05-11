@@ -45,6 +45,9 @@ query($search: String, $perPage: Int) {
         day
       }
       averageScore
+      type
+      episodes
+      chapters
         }
     }
 }
