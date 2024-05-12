@@ -1,5 +1,5 @@
 <template>
-    <h1 :style="{ marginLeft: '20px' }">Trending Anime</h1>
+    <h1 class="header">Trending Anime</h1>
     <p v-if="!trendingAnime">Loading Anime...</p>
     <div class="resBox">
         <div v-for="(t, i) in trendingAnime" :key="i">
@@ -15,7 +15,7 @@
 
         </div>
     </div>
-    <h1 :style="{ marginLeft: '20px' }">Trending Manga</h1>
+    <h1 class="header">Trending Manga</h1>
     <p v-if="!trendingManga">Loading Manga...</p>
     <div class="resBox">
         <div v-for="(t, i) in trendingManga" :key="i">
@@ -119,6 +119,18 @@ const resBoxStyle = ref({
 </script>
 
 <style scoped>
+img {
+    border-radius: 10px; 
+    width: inherit; 
+    height: 22em;
+    object-fit: cover; 
+    aspect-ratio: auto; 
+}
+
+.header {
+    margin-left: 20px;
+}
+
 .result {
     display: inline-flex;
     flex-flow: column;
@@ -148,11 +160,5 @@ const resBoxStyle = ref({
     flex-wrap: wrap; 
     justify-content: normal;
 }
-img {
-    border-radius: 10px; 
-    width: inherit; 
-    height: 22em;
-    object-fit: cover; 
-    aspect-ratio: auto; 
-}
+
 </style>

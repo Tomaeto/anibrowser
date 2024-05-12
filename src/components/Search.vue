@@ -1,11 +1,11 @@
 <template>
 
-    <input v-model="searchInput" placeholder="Input search term" @keyup.enter="getSearch" :disabled="!searchResults"></input>
-    <input type="button" @click="getSearch" value="Click to search" :disabled="!searchResults"></input>
-
+    <div :style="{display: 'inline-flex', marginTop:'auto'}">
+    <input class="searchInput" type="form" v-model="searchInput" placeholder="Search Anime & Manga" @keyup.enter="getSearch" :disabled="!searchResults"></input>
+    <input class="searchButton" type="button" @click="getSearch" value="Search" :disabled="!searchResults"></input>
+</div>
     <p v-if="!searchResults">Loading...</p>
-    <h1 v-else-if="searchComplete" :style="{ display: 'flex', justifyContent: 'center' }">Total Results: {{
-        searchResults.length }}</h1>
+    <h1 v-else-if="searchComplete" :style="{ display: 'flex', justifyContent: 'left' }">Total Results: {{ searchResults.length }}</h1>
     <ResultCard :results="searchResults" />
 </template>
 
@@ -46,6 +46,7 @@ query($search: String, $perPage: Int) {
       }
       averageScore
       type
+      format
       episodes
       chapters
         }
@@ -94,3 +95,42 @@ function handleData(data) {
     searchComplete.value = true;
 }
 </script>
+
+<style scoped>
+.searchInput {
+    font-family:Arial, Helvetica, sans-serif;
+    width: 12em;
+    height: 2.25em;
+    margin-right: 1em;
+    margin-left: 1em;
+    padding-right:100px;
+    font-size:16px;
+    border-style:solid;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color:forestgreen;
+}
+
+.searchButton {
+    font-family:Arial, Helvetica, sans-serif;
+    width: 5em;
+    border-radius: 10px;
+    font-size:16px;
+    font-weight:550;
+    color: white;
+    border-style: solid;
+    background-color: forestgreen;
+}
+
+.searchButton:hover {
+    background-color: green;
+    transition-duration: 100ms;
+}
+.searchButton:focus {
+ background-color: forestgreen;
+}
+</style>
